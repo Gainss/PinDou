@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>图豆师 · 全色号显示</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container">
+    <h1>
+        🧩 图豆师
+        <span id="sizeDisplay"> 全格显色号</span>
+    </h1>
+    <div class="sub">221种图豆专用色 | 左键绘制 · 右键/长按吸取 | 导出图纸/色卡/历史</div>
+
+    <div class="toolbar">
+        <div class="tool-group">
+            <button id="exportBtn" title="导出当前图纸为PNG">📥 图纸PNG</button>
+            <button id="exportUsedPaletteBtn" title="导出已用色卡为PNG">🖼️ 色卡PNG</button>
+            <button id="exportHistoryBtn" title="导出历史数据(JSON)">📤 保存本次数据</button>
+            <button id="importHistoryBtn" title="导入历史数据(JSON)">📥 导入历史JSON</button>
+            <input type="file" id="importHistoryInput" accept=".json,application/json" style="display: none;">
+            <button id="uploadBtn" title="上传图片转图纸">📁 图片转图纸</button>
+            <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+        </div>
+        <div class="tool-group">
+            <span>📐 画板大小：</span>
+            <button id="size52Btn" class="active-size">52x52</button>
+            <button id="size104Btn">104x104</button>
+            <span style="margin: 0 4px; color: #cdbcab;">|</span>
+            <span>🎨 色卡模式：</span>
+            <button id="paletteFullBtn" title="使用Mard色卡（221色）">Mard色卡</button>
+            <button id="paletteLightBtn" title="使用精简版色卡（118色）" class="active">精简版</button>
+        </div>
+    </div>
+
+    <div class="canvas-wrapper">
+        <canvas id="pixelCanvas"></canvas>
+    </div>
+
+    <div class="status-bar">
+        <div class="palette-header">
+            <div class="palette-header-left">
+                <span>🎨 图豆全色卡 · 悬停/长按显示色号</span>
+                <div class="mode-buttons">
+                    <button id="brushModeBtn" class="active">✏️ 画笔</button>
+                    <button id="eraserModeBtn">🧽 橡皮</button>
+                    <button id="toggleColorNamesBtn" class="active">隐藏色号</button>
+                </div>
+            </div>
+            <span class="footer-info">⚡ 点击/拖动绘制 | 长按吸取</span>
+        </div>
+        <div id="paletteGrid" class="palette-grid"></div>
+
+        <div class="stats-section">
+            <div class="stats-header">
+                <div>
+                    <span>📊 颜色使用统计 (已用 0 种颜色)</span>
+                    <div class="sort-buttons">
+                        <button id="sortByNameAsc" title="按色系升序（A→Z）">🔼 色系</button>
+                        <button id="sortByCountDesc" class="active-sort" title="按使用数量降序">🔽 数量</button>
+                    </div>
+                </div>
+            </div>
+            <div id="statsContainer" class="stats-grid">
+                <div style="color: #7b6e5d; text-align: center; padding: 12px;">绘制图案后统计将自动更新</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="signature">
+        ✦ 设计 · Gainss-v2.1.0 ✦
+    </div>
+</div>
+
+<div class="floating-buttons-container">
+    <button id="toggleFloatingBtnsBtn" class="toggle-floating-btn" title="收起/展开工具栏">🔼</button>
+    <div class="floating-buttons">
+        <button id="clearBtn" title="清空画布">🗑️ 清空</button>
+        <button id="clearBackgroundBtn" title="点击背景区域清除背景">🧹 清除背景</button>
+        <button id="simplifyBtn" title="减少图案中的颜色数量">🎨 简化颜色</button>
+        <button id="mergeRareBtn" title="将使用数量较少的颜色合并到相近的大颜色">🔄 合并少量颜色</button>
+        <button id="replaceColorBtn" title="替换颜色">🎨 替换颜色</button>
+    </div>
+</div>
+
+<script type="module" src="js/color.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
